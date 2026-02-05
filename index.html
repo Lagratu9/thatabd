@@ -1,157 +1,51 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="NutriPlan — Application de gestion de plan alimentaire thérapeutique">
-  <meta name="theme-color" content="#2d6a4f">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <title>NutriPlan — Guide</title>
-  <link rel="stylesheet" href="css/style.css">
-  <!-- Favicon emoji -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥗</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Plan Thérapeutique</title>
+    <meta name="description" content="Application de gestion de plan alimentaire thérapeutique">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="page-wrapper">
-
-    <!-- ── Header ── -->
-    <header class="app-header" role="banner">
-      <div class="container header-content">
-        <a href="index.html" class="header-logo" aria-label="Accueil NutriPlan">
-          <span class="logo-icon">🥗</span>
-          <div>
-            <span class="logo-text">NutriPlan</span>
-            <span class="logo-sub">Plan thérapeutique</span>
-          </div>
-        </a>
-
-        <button class="hamburger" id="hamburger" aria-label="Menu de navigation" aria-expanded="false" aria-controls="nav-drawer">
-          <div class="hamburger-lines">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </button>
-      </div>
+    <header class="main-header">
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="globalSearch" placeholder="Rechercher un aliment, un repas..." aria-label="Recherche globale">
+        </div>
     </header>
 
-    <!-- ── Navigation Overlay ── -->
-    <div class="nav-overlay" id="nav-overlay"></div>
+    <main id="app">
+        
+        <section id="view-home" class="view active">
+            <div class="container">
+                <h1>Ma Santé 🌿</h1>
+                <p class="subtitle">Tableau de bord nutritionnel</p>
 
-    <!-- ── Navigation Drawer ── -->
-    <nav class="nav-drawer" id="nav-drawer" role="navigation" aria-label="Navigation principale">
-      <div class="nav-drawer-title">Navigation</div>
-      <a href="index.html">
-        <span class="nav-emoji">🏠</span> Accueil
-      </a>
-      <a href="plan-alimentaire.html">
-        <span class="nav-emoji">📋</span> Plan alimentaire
-      </a>
-      <a href="menu.html">
-        <span class="nav-emoji">📅</span> Menu 14 jours
-      </a>
-      <a href="petit-dejeuner.html">
-        <span class="nav-emoji">🌅</span> Petit-déjeuner
-      </a>
-      <a href="dejeuner.html">
-        <span class="nav-emoji">☀️</span> Déjeuner
-      </a>
-      <a href="diner.html">
-        <span class="nav-emoji">🌙</span> Dîner
-      </a>
-      <a href="collation.html">
-        <span class="nav-emoji">🍎</span> Collation
-      </a>
-      <a href="liste-course.html">
-        <span class="nav-emoji">🛒</span> Liste de courses
-      </a>
-      <a href="aliments.html">
-        <span class="nav-emoji">🥬</span> Aliments
-      </a>
-      <a href="informations.html">
-        <span class="nav-emoji">ℹ️</span> Informations
-      </a>
-    </nav>
+                <nav class="home-grid">
+                    <button class="card-btn" onclick="navigateTo('plan-alimentaire')">
+                        <div class="card-icon">🥗</div>
+                        <span class="card-title">Plan<br>alimentaire</span>
+                    </button>
 
-    <!-- ── Main Content ── -->
-    <main role="main">
+                    <button class="card-btn" onclick="navigateTo('aliments')">
+                        <div class="card-icon">🍎</div>
+                        <span class="card-title">Aliments</span>
+                    </button>
+                </nav>
 
-      <!-- Search Section -->
-      <section class="search-section" aria-label="Recherche globale">
-        <div class="container">
-          <div class="search-greeting animate-fade-in-up">
-            <h1>Votre plan alimentaire 🌿</h1>
-            <p>Recherchez un aliment, un repas ou une recette</p>
-          </div>
-
-          <div class="search-container animate-fade-in-up stagger-1">
-            <div class="search-input-wrap">
-              <span class="search-icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              </span>
-              <input 
-                type="search" 
-                id="global-search" 
-                class="search-input" 
-                placeholder="Tajine, quinoa, myrtilles..." 
-                autocomplete="off"
-                aria-label="Rechercher dans le plan alimentaire"
-                role="combobox"
-                aria-expanded="false"
-                aria-controls="search-results"
-              >
-              <button class="search-clear" id="search-clear" aria-label="Effacer la recherche">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-              </button>
+                <div class="info-bubble-container">
+                    <button class="info-bubble" onclick="navigateTo('informations')" aria-label="Informations">
+                        <span class="icon">ℹ️</span>
+                        <span class="label">Informations</span>
+                    </button>
+                </div>
             </div>
-            <div class="search-results" id="search-results" role="listbox" aria-label="Résultats de recherche"></div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Main Cards -->
-      <section class="main-cards" aria-label="Sections principales">
-        <div class="container">
-          <div class="cards-grid">
+        </main>
 
-            <!-- Plan Alimentaire Card -->
-            <a href="plan-alimentaire.html" class="card card--plan animate-fade-in-up stagger-2" role="link" aria-label="Accéder au plan alimentaire">
-              <span class="card-emoji" aria-hidden="true">📋</span>
-              <h2 class="card-title">Plan alimentaire</h2>
-              <p class="card-subtitle">Menus & repas</p>
-            </a>
-
-            <!-- Aliments Card -->
-            <a href="aliments.html" class="card card--aliments animate-fade-in-up stagger-3" role="link" aria-label="Consulter les aliments autorisés">
-              <span class="card-emoji" aria-hidden="true">🥗</span>
-              <h2 class="card-title">Aliments</h2>
-              <p class="card-subtitle">Guide alimentaire</p>
-            </a>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- Info Bubble -->
-      <section class="info-section animate-fade-in-up stagger-4" aria-label="Informations">
-        <div class="container" style="display:flex;justify-content:center;">
-          <a href="informations.html" class="info-bubble" aria-label="Accéder aux informations importantes">
-            <span class="info-icon" aria-hidden="true">ℹ️</span>
-            <span class="info-text">Informations importantes</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-          </a>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- ── Footer spacer for mobile ── -->
-    <div style="height: 2rem;"></div>
-
-  </div>
-
-  <script src="js/app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
