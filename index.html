@@ -1,102 +1,51 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#f7f5ef">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <title>NutriPlan – Plan Alimentaire Thérapeutique</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Plan Thérapeutique</title>
+    <meta name="description" content="Application de gestion de plan alimentaire thérapeutique">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Organic background -->
-  <div class="bg-scene">
-    <div class="bg-blob bg-blob--1"></div>
-    <div class="bg-blob bg-blob--2"></div>
-    <div class="bg-blob bg-blob--3"></div>
-    <svg class="bg-grain" width="100%" height="100%">
-      <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter>
-      <rect width="100%" height="100%" filter="url(#grain)" opacity="0.028"/>
-    </svg>
-  </div>
-
-  <div class="app">
-
-    <!-- Header -->
-    <header class="header fade-up">
-      <div class="header__logo">
-        <span class="header__icon">🌿</span>
-        <div>
-          <h1 class="header__title">NutriPlan</h1>
-          <p class="header__sub">Plan alimentaire thérapeutique</p>
+    <header class="main-header">
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="globalSearch" placeholder="Rechercher un aliment, un repas..." aria-label="Recherche globale">
         </div>
-      </div>
     </header>
 
-    <!-- Greeting -->
-    <section class="greeting fade-up" style="animation-delay:.12s">
-      <p class="greeting__text">Bienvenue 👋</p>
-      <p class="greeting__sub">Que souhaitez-vous consulter ?</p>
-    </section>
+    <main id="app">
+        
+        <section id="view-home" class="view active">
+            <div class="container">
+                <h1>Ma Santé 🌿</h1>
+                <p class="subtitle">Tableau de bord nutritionnel</p>
 
-    <!-- Search -->
-    <div class="search fade-up" style="animation-delay:.2s">
-      <div class="search__inner">
-        <svg class="search__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input class="search__input" id="globalSearch" type="search" placeholder="Rechercher un repas, un aliment…" autocomplete="off" spellcheck="false">
-      </div>
-      <div class="search__dropdown" id="globalSearchResults"></div>
-    </div>
+                <nav class="home-grid">
+                    <button class="card-btn" onclick="navigateTo('plan-alimentaire')">
+                        <div class="card-icon">🥗</div>
+                        <span class="card-title">Plan<br>alimentaire</span>
+                    </button>
 
-    <!-- Main Cards -->
-    <section class="cards">
+                    <button class="card-btn" onclick="navigateTo('aliments')">
+                        <div class="card-icon">🍎</div>
+                        <span class="card-title">Aliments</span>
+                    </button>
+                </nav>
 
-      <a href="plan-alimentaire.html" class="card card--plan fade-up" style="animation-delay:.3s">
-        <div class="card__emoji-wrap card__emoji-wrap--green">
-          <span class="card__emoji">📋</span>
-        </div>
-        <div class="card__body">
-          <h2 class="card__title">Plan alimentaire</h2>
-          <p class="card__desc">Menus, repas et organisation de vos journées</p>
-        </div>
-        <svg class="card__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
+                <div class="info-bubble-container">
+                    <button class="info-bubble" onclick="navigateTo('informations')" aria-label="Informations">
+                        <span class="icon">ℹ️</span>
+                        <span class="label">Informations</span>
+                    </button>
+                </div>
+            </div>
+        </section>
 
-      <a href="aliments.html" class="card card--aliments fade-up" style="animation-delay:.4s">
-        <div class="card__emoji-wrap card__emoji-wrap--teal">
-          <span class="card__emoji">🥑</span>
-        </div>
-        <div class="card__body">
-          <h2 class="card__title">Aliments</h2>
-          <p class="card__desc">Guide complet des aliments recommandés</p>
-        </div>
-        <svg class="card__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
+        </main>
 
-    </section>
-
-    <!-- Info -->
-    <section class="info-section fade-up" style="animation-delay:.5s">
-      <a href="informations.html" class="info-pill">
-        <span class="info-pill__badge">ℹ️</span>
-        <span class="info-pill__label">Informations &amp; conseils</span>
-        <svg class="info-pill__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
-    </section>
-
-    <footer class="footer fade-up" style="animation-delay:.58s">
-      <p>🍃 Prenez soin de vous</p>
-    </footer>
-
-  </div>
-
-  <script src="app.js"></script>
-  <script>initSearch('#globalSearch', '#globalSearchResults');</script>
+    <script src="script.js"></script>
 </body>
 </html>
