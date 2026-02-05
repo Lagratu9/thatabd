@@ -1,37 +1,47 @@
-// État de l'application
+// --- CONFIGURATION ---
 const appState = {
+    previousView: null,
     currentView: 'view-home'
 };
 
-// Système de navigation simple (SPA)
-function navigateTo(viewId) {
-    console.log(`Navigation vers : ${viewId}`);
+// --- NAVIGATION CORE ---
+function navigateTo(targetViewId) {
+    // 1. Vérifier si la vue existe
+    const targetElement = document.getElementById(targetViewId);
     
-    // 1. Masquer toutes les vues (logique future quand on en aura plusieurs)
-    // document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
-
-    // 2. Afficher la vue cible
-    // Note: Pour l'instant, nous n'avons que la page d'accueil.
-    // Dans la prochaine étape, nous ajouterons la logique pour changer de vue.
-    
-    if (viewId === 'plan-alimentaire') {
-        alert("Vers la page Plan Alimentaire (Prochaine étape)");
-    } else if (viewId === 'aliments') {
-        alert("Vers la page Aliments (À venir)");
-    } else if (viewId === 'informations') {
-        alert("Vers la page Informations (À venir)");
+    if (!targetElement) {
+        // Si la vue n'est pas encore créée (ex: Déjeuner, Menu...), on met une alerte temporaire
+        console.warn(`La vue "${targetViewId}" n'existe pas encore.`);
+        alert("🚧 Cette section est en cours de construction (Partie suivante) !");
+        return;
     }
+
+    // 2. Gestion de l'historique simple
+    appState.previousView = appState.currentView;
+    appState.currentView = targetViewId;
+
+    // 3. Masquer toutes les vues actives
+    document.querySelectorAll('.view').forEach(view => {
+        view.classList.remove('active');
+        // Optionnel : remettre le scroll en haut quand on change de vue
+    });
+
+    // 4. Afficher la nouvelle vue avec une petite animation (gérée par CSS)
+    targetElement.classList.add('active');
+    window.scrollTo(0, 0);
 }
 
-// Gestion de la recherche (Debouncing)
-const searchInput = document.getElementById('globalSearch');
-let debounceTimer;
+// --- BOUTONS ACCUEIL (Mapping) ---
+// Note: J'ai mis à jour les onclick dans le HTML de la partie 1 pour correspondre aux ID
+// Assure-toi que les boutons de l'index.html (Partie 1) pointent bien vers :
+// - 'view-plan-alimentaire'
+// - 'view-aliments' (pas encore créé)
 
-searchInput.addEventListener('input', (e) => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-        const query = e.target.value.toLowerCase();
-        console.log(`Recherche pour : ${query}`);
-        // Logique de filtrage à implémenter plus tard
-    }, 300); // 300ms de délai (Debounce)
-});
+// --- BARRE DE RECHERCHE ---
+const searchInput = document.getElementById('globalSearch');
+if(searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        // Logique future de recherche
+        console.log("Recherche:", e.target.value);
+    });
+}
