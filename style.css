@@ -185,3 +185,46 @@ h1 {
         font-size: 1.3rem;
     }
 }
+/* --- VUE PLAN ALIMENTAIRE --- */
+
+/* Bouton Retour */
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.back-btn:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Grille générique pour les menus (réutilise le style de base mais adapté) */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur mobile */
+    gap: 15px;
+    padding-bottom: 40px; /* Espace pour le scroll */
+}
+
+/* Style spécifique pour mettre en avant la liste de courses */
+.highlight-card {
+    border: 2px solid var(--primary-color);
+    background-color: #f1f8e9; /* Vert très très pâle */
+}
+
+/* Adaptation Tablette/Desktop pour cette grille de 6 */
+@media (min-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur écran large */
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
